@@ -12,6 +12,8 @@ resolvers += "Greative Repository" at "https://github.com/karad/maven-repo/raw/m
 addSbtPlugin("jp.greative" %% "play2-project-info-sbt" % "0.1")
 ```
 
+### 2. Type this in Play Console
+
 So, you can show project information about properties and env.
 Type this.
 
