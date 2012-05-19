@@ -16,7 +16,8 @@ So, you can show project information about properties and env.
 Type this.
 
 ```
-$ play2-project-info
+$ play
+[YourProject] $ play2-project-info
 ```
 
 
