@@ -6,7 +6,7 @@
 
 Edit file `project/plugins.sbt` and adjust the following settings
 
-```
+```scala
 resolvers += "Greative Repository" at "https://github.com/karad/maven-repo/raw/master/release/"
 
 addSbtPlugin("jp.greative" %% "play2-project-info-sbt" % "0.1")
