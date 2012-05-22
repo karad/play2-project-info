@@ -1,4 +1,4 @@
-# Project Infomation module for Play2!
+# Project Information module for Play2!
 
 ## Usage
 
