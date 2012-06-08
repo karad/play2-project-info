@@ -1,50 +1,79 @@
-# Short filter module for Play2!
-
-## Description
-
-Short filter module for Play2! is a Play framework 2.0 plugin that gives you an easy way to filter some text. like 
-@format.raw("STRING") is @r("STRING").
+# Project Information module for Play2!
 
 ## Usage
 
 ### 1. Install the module dependency
 
-Edit file `project/Build.scala` and adjust the following settings
+Edit file `project/plugins.sbt` and adjust the following settings
 
 ```scala
-    val appDependencies = Seq(
-      "jp.greative" % "play2-short-filtr_2.9.1" % "0.1"
-      // Add your project dependencies here,
-    )
+resolvers += "Greative Repository" at "https://github.com/karad/maven-repo/raw/master/release/"
 
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
-      resolvers += "Greative Repository" at "https://github.com/karad/maven-repo/raw/master/release/"
-      // Add your own project settings here      
-    )
+addSbtPlugin("jp.greative" %% "play2-project-info-sbt" % "0.1")
 ```
 
-### 2. Insert your view template
+### 2. Type this in Play Console
 
-you can escape "{" , "}" and more.
-
-```
-@import tags._
-
-@main() {
-    
-    @r("{")
-        OUTPUT
-    @r("}")
-
-}
-```
-
-output is
+So, you can show project information about properties and env.
+Type this.
 
 ```
-{
-    OUTPUT
-}
+$ play
+[YourProject] $ play2-project-info
+```
+
+
+```
+       _            _ 
+ _ __ | | __ _ _  _| |
+| '_ \| |/ _' | || |_|
+|  __/|_|\____|\__ (_)
+|_|            |__/ 
+             
+play! 2.1-SNAPSHOT, http://www.playframework.org
+
+> Type "help play" or "license" for more information.
+> Type "exit" or use Ctrl+D to leave this console.
+
+[YourProject] $ play2-project-info
+
+==============================================================
+play! project info.             - @kara_d, http://greative.jp/
+
+--------------------------------------------------------------
+project properties : 
+--------------------------------------------------------------
+-- listing properties --
+sbt.ivy.home=/Users/harakazuhiro/gitrepo_src/Play2...
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.boot.library.path=/System/Library/Java/JavaVirtualMachi...
+java.vm.version=20.1-b02-384
+awt.nativeDoubleBuffering=true
+gopherProxySet=false
+mrj.build=10M3425
+java.vm.vendor=Apple Inc.
+java.vendor.url=http://www.apple.com/
+
+....
+
+java.vendor.url.bug=http://bugreport.apple.com/
+sun.cpu.endian=little
+sun.io.unicode.encoding=UnicodeLittle
+mrj.version=1060.1.6.0_26-384
+socksNonProxyHosts=local|*.local|169.254/16|*.169.254/16
+ftp.nonProxyHosts=local|*.local|169.254/16|*.169.254/16
+sun.cpu.isalist=
+
+--------------------------------------------------------------
+project env : 
+--------------------------------------------------------------
+{TERM=xterm-color, DYLD_LIBRARY_PATH=/Library/Frameworks/R.framework/Resources/lib:/Library/Frameworks/R.framework/Resources/bin::/Users/harakazuhiro/Library/R/2.13/library/rJava/jri, JAVA_HOME=/Library/Java/Home, TERM_PROGRAM=Apple_Terminal, rvm_version=1.13.4 (), 
+
+.... 
+
+DISPLAY=/tmp/launch-XOxgj5/org.x:0, R_SHARE_DIR=/Library/Frameworks/R.framework/Resources/share, USER=harakazuhiro, com.apple.java.jvmTask=CommandLine_Manual.java, rvm_ruby_mode=, HOME=/Users/harakazuhiro, GAE_PATH=/Users/harakazuhiro/appengine-java-sdk-1.4.0, LANG=ja_JP.UTF-8}
+
+[success] Total time: 0 s, completed 2012/05/20 3:10:54
 ```
 
 ## Licence

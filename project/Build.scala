@@ -10,7 +10,7 @@ object ApplicationBuild extends Build {
     import Dependencies._
     import BuildSettings._
 
-    val appName         = "play2-short-filtr"
+    val appName         = "play2-project-info"
     val appVersion      = "0.1"
     val releases        = "/Users/harakazuhiro/gitrepo/maven-repo/release"
     val snapshot        = "/Users/harakazuhiro/gitrepo/maven-repo/snapshots"
@@ -23,15 +23,33 @@ object ApplicationBuild extends Build {
       // Add your own project settings here    
       publishTo := Some(Resolver.file("maven-repo", file(mavenRepository))),
       organization   := buildOrganization
+    ).aggregate(SbtPluginProject)
+
+
+    lazy val SbtPluginProject = Project(
+      "play2-project-info-sbt",
+      file("sbt-plugin"),
+      settings = buildSettings ++ Seq(
+        sbtPlugin := true,
+        version := "0.1",
+        publishMavenStyle := true,
+        libraryDependencies := sbtDependencies,
+        libraryDependencies <+= (sbtVersion in update,scalaVersion) { (sbtV, scalaV) => sbtPluginExtra("play" % "sbt-plugin" % "2.1-SNAPSHOT", sbtV, scalaV) },
+        publishTo := Some(Resolver.file("maven-repo", file(mavenRepository))),
+        scalacOptions ++= Seq("-encoding", "UTF-8", "-Xlint","-deprecation", "-unchecked"),
+        publishArtifact in (Compile, packageDoc) := false,
+        publishArtifact in (Compile, packageSrc) := false,
+        resolvers += typesafe
+      )
     )
-    
+
     object BuildSettings {
 
         val buildOrganization = "jp.greative"
         val buildVersion      = Option(System.getProperty("play.version")).filterNot(_.isEmpty).getOrElse("2.0-unknown")
         val buildScalaVersion = Option(System.getProperty("scala.version")).getOrElse("2.9.1")
         val buildScalaVersionForSbt = "2.9.1"
-        val buildSbtVersion   = "0.11.2"
+        val buildSbtVersion   = "0.11.3"
 
         val buildSettings = Defaults.defaultSettings ++ Seq (
             organization   := buildOrganization,
