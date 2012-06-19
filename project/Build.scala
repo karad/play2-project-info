@@ -34,7 +34,7 @@ object ApplicationBuild extends Build {
         version := "0.1",
         publishMavenStyle := true,
         libraryDependencies := sbtDependencies,
-        libraryDependencies <+= (sbtVersion in update,scalaVersion) { (sbtV, scalaV) => sbtPluginExtra("play" % "sbt-plugin" % "2.1-SNAPSHOT", sbtV, scalaV) },
+        libraryDependencies <+= (sbtVersion in update,scalaVersion) { (sbtV, scalaV) => sbtPluginExtra("play" % "sbt-plugin" % "2.0.1", sbtV, scalaV) },
         publishTo := Some(Resolver.file("maven-repo", file(mavenRepository))),
         scalacOptions ++= Seq("-encoding", "UTF-8", "-Xlint","-deprecation", "-unchecked"),
         publishArtifact in (Compile, packageDoc) := false,
@@ -49,7 +49,7 @@ object ApplicationBuild extends Build {
         val buildVersion      = Option(System.getProperty("play.version")).filterNot(_.isEmpty).getOrElse("2.0-unknown")
         val buildScalaVersion = Option(System.getProperty("scala.version")).getOrElse("2.9.1")
         val buildScalaVersionForSbt = "2.9.1"
-        val buildSbtVersion   = "0.11.3"
+        val buildSbtVersion   = "0.11.2"
 
         val buildSettings = Defaults.defaultSettings ++ Seq (
             organization   := buildOrganization,
